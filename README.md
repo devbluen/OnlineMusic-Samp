@@ -8,12 +8,9 @@ This is an API created by me to play songs from YouTube on your SAMP server. How
 > 3. I will keep this include updated; if there are any problems, feel free to contact me.
 
 # How to Install?
-> 1. Put OnlineMusic.inc in **Pawno > Includes**
-> 2. Write in your gamemode **#include <a_https>** after **#include <a_samp>**
-> 3. Write in your gamemode **#include <OnlineMusic>**
-
-# Requirements
-- Include YSI by Y_Less
+> - Put OnlineMusic.inc in **Pawno > Includes**
+> - Write in your gamemode **#include <a_https>** after **#include <a_samp>**
+> - Write in your gamemode **#include <OnlineMusic>**
 
 # Functions
 ```pawn
