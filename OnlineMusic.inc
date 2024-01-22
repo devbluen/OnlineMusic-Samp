@@ -178,8 +178,10 @@ public OnPlayAudio_Request(playerid, response_code, const data[]) {
 
                 /*      Config          */
             incOnlineMusic[playerid][incOnlineMusic_Timer] = gettime() + incOnlineMusic[playerid][incOnlineMusic_DurationS] + 6;
-            
-            PlayAudioStreamForPlayer(playerid, va_return("http://dev.rippzy.com/api/v1/Play.php?n=%s", PlayOnline_Index(data, "<id>", "</id>")), \ 
+
+			new tempURL[128 + 30 + 1];
+			format(tempURL, sizeof tempURL, "http://dev.rippzy.com/api/v1/Play.php?n=%s", PlayOnline_Index(data, "<id>", "</id>"));
+            PlayAudioStreamForPlayer(playerid, tempURL, \ 
                 incOnlineMusic[playerid][incOnlineMusic_Posicao][0], \ 
                 incOnlineMusic[playerid][incOnlineMusic_Posicao][1], \ 
                 incOnlineMusic[playerid][incOnlineMusic_Posicao][2], \ 
