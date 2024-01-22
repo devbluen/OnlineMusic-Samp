@@ -11,6 +11,9 @@ This is an API created by me to play songs from YouTube on your SAMP server. How
 > 1. Put OnlineMusic.inc in **Pawno > Includes**
 > 2. Write in your gamemode **#include <OnlineMusic>**
 
+# Requirements
+- Include YSI by Y_Less
+
 # Functions
 ```pawn
 PlayOnlineAudio(playerid, const musicName[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0);
