@@ -22,10 +22,6 @@
             // Definers
 #define             AUDIO_ONLINE_CALLBACK           (true);
 
-            // Includes
-#include <YSI_Coding\y_hooks>
-#include <YSI_Data\y_iterate>
-
             // Forward
 forward             OnPlayerAudioOnline(playerid, musicName[]);
 forward             OnPlayAudio_Request(playerid, response_code, const data[]);
@@ -46,8 +42,24 @@ enum incOnlineMusic_Enum {
 
 new incOnlineMusic[MAX_PLAYERS][incOnlineMusic_Enum];
 
-hook OnPlayerDisconnect(playerid, reason) 
-    return (PlayOnlineAudio_Reset(playerid));
+public OnPlayerDisconnect(playerid, reason) {
+	
+    PlayOnlineAudio_Reset(playerid);
+
+    #if defined MyLib_OnPlayerDisconnect
+        MainOM_OnPlayerDisconnect(playerid, reason);
+    #endif
+    return 1;
+}
+#if defined _ALS_OnPlayerDisconnect
+    #undef OnPlayerDisconnect
+#else
+    #define _ALS_OnPlayerDisconnect
+#endif
+#define OnPlayerDisconnect MainOM_OnPlayerDisconnect
+#if defined MainOM_OnPlayerDisconnect
+    forward MainOM_OnPlayerDisconnect(playerid, reason);
+#endif
 
 
 
