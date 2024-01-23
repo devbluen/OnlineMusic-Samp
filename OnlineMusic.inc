@@ -8,6 +8,7 @@
             PlayOnlineAudio_Channel(playerid);
             PlayOnlineAudio_Verified(playerid);
             PlayOnlineAudio_UploadAt(playeid);
+            PlayOnlineAudio_Views(playerid);
         
         Callback:
             OnPlayerAudioOnline(playerid, musicName[])
@@ -130,6 +131,9 @@ stock PlayOnlineAudio_Channel(playerid) {
 
 stock bool:PlayOnlineAudio_Verified(playerid)
     return (incOnlineMusic[playerid][incOnlineMusic_Verified]);
+
+stock PlayOnlineAudio_Views(playerid)
+    return (incOnlineMusic[playerid][incOnlineMusic_Views]);
 
 stock bool:PlayOnlineAudio_UploadAt(playerid) {
     new tempString[15 + 1];
