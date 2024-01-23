@@ -1,14 +1,19 @@
 /*
 
         Stocks:
-            PlayOnlineAudio(playerid, const musicName[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0)
-            PlayOnlineAudioDuration(playerid);
-            PlayOnlineAudioDuration_String(playerid);
-            PlayOnlineAudioDuration_Title(playerid);
+            PlayOnlineAudio(playerid, musicName[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0)
+            PlayOnlineAudio_Duration(playerid);
+            PlayOnlineAudio_DurationS(playerid);
+            PlayOnlineAudio_Title(playerid);
+            PlayOnlineAudio_Channel(playerid);
+            PlayOnlineAudio_Verified(playerid);
+            PlayOnlineAudio_UploadAt(playeid);
         
         Callback:
             OnPlayerAudioOnline(playerid, musicName[])
 
+        Example:
+            PlayOnlineAudio(playerid, "The weeknd some else");
 */
 
 #if defined _inc_musicApi
@@ -33,6 +38,9 @@ enum incOnlineMusic_Enum {
     incOnlineMusic_Duration[10],
     incOnlineMusic_DurationS,
     incOnlineMusic_Titulo[60],
+    incOnlineMusic_Channel[60],
+    incOnlineMusic_UploadAt[15],
+    bool:incOnlineMusic_Verified,
 
         /*  Config   */
     Float:incOnlineMusic_Posicao[3],
@@ -99,18 +107,33 @@ stock PlayOnlineAudio(playerid, musicName[], Float:posX = 0.0, Float:posY = 0.0,
     return true;
 }
 
-stock PlayOnlineAudioDuration(playerid)
+stock PlayOnlineAudio_Duration(playerid)
     return (incOnlineMusic[playerid][incOnlineMusic_DurationS]);
 
-stock PlayOnlineAudioDuration_String(playerid) {
+stock PlayOnlineAudio_DurationS(playerid) {
     new tempString[10 + 1];
     strcat(tempString, incOnlineMusic[playerid][incOnlineMusic_Duration]);
     return (tempString);
 }
 
-stock PlayOnlineAudioDuration_Title(playerid) {
+stock PlayOnlineAudio_Title(playerid) {
     new tempString[60 + 1];
-    strcat(tempString, incOnlineMusic[playerid][incOnlineMusic_Duration]);
+    strcat(tempString, incOnlineMusic[playerid][incOnlineMusic_Titulo]);
+    return (tempString);
+}
+
+stock PlayOnlineAudio_Channel(playerid) {
+    new tempString[60 + 1];
+    strcat(tempString, incOnlineMusic[playerid][incOnlineMusic_Channel]);
+    return (tempString);
+}
+
+stock bool:PlayOnlineAudio_Verified(playerid)
+    return (incOnlineMusic[playerid][incOnlineMusic_Verified]);
+
+stock bool:PlayOnlineAudio_UploadAt(playerid) {
+    new tempString[15 + 1];
+    strcat(tempString, incOnlineMusic[playerid][incOnlineMusic_UploadAt]);
     return (tempString);
 }
 
@@ -171,10 +194,13 @@ public OnPlayAudio_Request(playerid, response_code, const data[]) {
                 /*       Strings        */
             format(incOnlineMusic[playerid][incOnlineMusic_Titulo], 60, PlayOnline_Index(data, "<title>", "</title>"));
             format(incOnlineMusic[playerid][incOnlineMusic_Duration], 10, PlayOnline_Index(data, "<duration>", "</duration>"));
+            format(incOnlineMusic[playerid][incOnlineMusic_Channel], 60, PlayOnline_Index(data, "<channelName>", "</channelName>"));
+            format(incOnlineMusic[playerid][incOnlineMusic_UploadAt], 15, PlayOnline_Index(data, "<uploadedAt>", "</uploadedAt>"));
             
                 /*       Ints           */
             sscanf(PlayOnline_Index(data, "<views>", "</views>"), "d", incOnlineMusic[playerid][incOnlineMusic_Views]);
             sscanf(PlayOnline_Index(data, "<durationseconds>", "</durationseconds>"), "d", incOnlineMusic[playerid][incOnlineMusic_DurationS]);
+            sscanf(PlayOnline_Index(data, "<verified>", "</verified>"), "d", incOnlineMusic[playerid][incOnlineMusic_Verified]);
 
                 /*      Config          */
             incOnlineMusic[playerid][incOnlineMusic_Timer] = gettime() + incOnlineMusic[playerid][incOnlineMusic_DurationS] + 6;
