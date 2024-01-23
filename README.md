@@ -15,9 +15,12 @@ This is an API created by me to play songs from YouTube on your SAMP server. How
 # Functions
 ```pawn
 PlayOnlineAudio(playerid, const musicName[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0);
-PlayOnlineAudioDuration(playerid);
-PlayOnlineAudioDuration_String(playerid);
-PlayOnlineAudioDuration_Title(playerid);
+PlayOnlineAudio_Duration(playerid);   // In Int
+PlayOnlineAudio_DurationS(playerid);  // In String
+PlayOnlineAudio_Title(playerid);
+PlayOnlineAudio_Channel(playerid);
+PlayOnlineAudio_Verified(playerid);
+PlayOnlineAudio_UploadAt(playeid);
 ```
 
 # Callback
