@@ -21,6 +21,7 @@ PlayOnlineAudio_Title(playerid);
 PlayOnlineAudio_Channel(playerid);
 PlayOnlineAudio_Verified(playerid);
 PlayOnlineAudio_UploadAt(playeid);
+PlayOnlineAudio_Views(playerid);
 ```
 
 # Callback
