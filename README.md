@@ -25,6 +25,12 @@ PlayOnlineAudioDuration_Title(playerid);
 OnPlayerAudioOnline(playerid, musicName[])
 ```
 
+# Example
+```pawn
+Exemple:
+PlayOnlineAudio(playerid, "The Weeknd Some Else");
+```
+
 # Preview
 Preview Link: https://www.youtube.com/watch?v=iVHE9a3YXic
 
