@@ -56,7 +56,7 @@ public OnPlayerDisconnect(playerid, reason) {
 	PlayOnlineAudio_Reset(playerid);
 
 	if (funcidx("OM_OnPlayerDisconnect") != -1)
-		return CallLocalFunction("OM_OnPlayerDisconnect", "");
+		return CallLocalFunction("OM_OnPlayerDisconnect", "ii", playerid, reason);
 		
 	return 1;
 }
