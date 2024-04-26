@@ -66,7 +66,7 @@ public OnPlayerDisconnect(playerid, reason) {
 #else
 	#define _ALS_OnPlayerDisconnect
 #endif
-#define OnGameModeInit OM_OnPlayerDisconnect
+#define OnPlayerDisconnect OM_OnPlayerDisconnect
 forward OM_OnPlayerDisconnect();
 
 
