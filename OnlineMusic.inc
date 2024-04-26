@@ -52,23 +52,22 @@ enum incOnlineMusic_Enum {
 new incOnlineMusic[MAX_PLAYERS][incOnlineMusic_Enum];
 
 public OnPlayerDisconnect(playerid, reason) {
-	
-    PlayOnlineAudio_Reset(playerid);
 
-    #if defined MyLib_OnPlayerDisconnect
-        MainOM_OnPlayerDisconnect(playerid, reason);
-    #endif
-    return 1;
+	PlayOnlineAudio_Reset(playerid);
+
+	if (funcidx("OM_OnPlayerDisconnect") != -1)
+		return CallLocalFunction("OM_OnPlayerDisconnect", "");
+		
+	return 1;
 }
+
 #if defined _ALS_OnPlayerDisconnect
-    #undef OnPlayerDisconnect
+	#undef OnPlayerDisconnect
 #else
-    #define _ALS_OnPlayerDisconnect
+	#define _ALS_OnPlayerDisconnect
 #endif
-#define OnPlayerDisconnect MainOM_OnPlayerDisconnect
-#if defined MainOM_OnPlayerDisconnect
-    forward MainOM_OnPlayerDisconnect(playerid, reason);
-#endif
+#define OnGameModeInit OM_OnPlayerDisconnect
+forward OM_OnPlayerDisconnect();
 
 
 
